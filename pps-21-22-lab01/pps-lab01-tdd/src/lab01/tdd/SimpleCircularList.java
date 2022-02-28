@@ -67,4 +67,5 @@ public class SimpleCircularList implements CircularList {
     public Optional<Integer> next(SelectStrategy strategy) {
         return Optional.empty();
     }
+    //TODO prova
 }
