@@ -1,15 +1,16 @@
 package lab01.tdd;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class SimpleCircularList implements CircularList {
 
-    private final LinkedList<Integer> elementList;
+    private final List<Integer> elementList;
     private int currentIndex;
 
     public SimpleCircularList() {
-        this.elementList = new LinkedList<>();
+        this.elementList = new ArrayList<>();
         this.currentIndex = -1;
     }
 
@@ -29,14 +30,12 @@ public class SimpleCircularList implements CircularList {
         return this.elementList.size() == 0;
     }
 
-    private int getNextIndex(){
+    private void nextIndex(){
         this.currentIndex = (this.currentIndex == this.elementList.size()-1) ? 0 : this.currentIndex +1;
-        return this.currentIndex;
     }
 
-    private int getPreviousIndex(){
+    private void previousIndex(){
         this.currentIndex = (this.currentIndex == 0) ? this.elementList.size()-1 : this.currentIndex -1;
-        return this.currentIndex;
     }
 
     private Optional<Integer> getElement(int index){
@@ -49,12 +48,14 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> next() {
-        return getElement(getNextIndex());
+        this.nextIndex();
+        return this.getElement(this.currentIndex);
     }
 
     @Override
     public Optional<Integer> previous() {
-        return getElement(getPreviousIndex());
+        this.previousIndex();
+        return this.getElement(this.currentIndex);
     }
 
     @Override
@@ -65,7 +66,17 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
+
+        this.nextIndex();
+
+        for(int i = 0; i < elementList.size(); i++){
+            if(strategy.apply(elementList.get(this.currentIndex))){
+                return Optional.of(elementList.get(this.currentIndex));
+            }else{
+                this.nextIndex();
+            }
+        }
+
         return Optional.empty();
     }
-    //TODO prova
 }
