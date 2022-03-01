@@ -19,113 +19,167 @@ public class CircularListTest {
     }
 
     @Test public void testIsInitiallyEmpty(){
-        assertTrue(list.isEmpty());
-        assertEquals(0,list.size());
+        assertTrue(this.list.isEmpty());
+        assertEquals(0,this.list.size());
     }
 
     @Test public void testFirstAdd(){
-        list.add(1);
-        assertFalse(list.isEmpty());
-        assertEquals(1, list.size());
+        this.list.add(1);
+        assertFalse(this.list.isEmpty());
+        assertEquals(1, this.list.size());
     }
 
-    @Test public void testNextAdds(){
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        assertEquals(3, list.size());
+    @Test public void testMultipleAdds(){
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
+        assertEquals(3, this.list.size());
     }
 
     @Test public void testNext(){
-        assertEquals(Optional.empty(), list.next());
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        assertEquals(Optional.empty(), this.list.next());
+        Optional<Integer> emptyOptional = this.list.next();
+        assertFalse(emptyOptional.isPresent());
+
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
 
         for (int i : new int[]{1, 2, 3, 1}) {
-            Optional<Integer> optional = list.next();
+            Optional<Integer> optional = this.list.next();
             assertTrue(optional.isPresent());
             assertEquals(i, optional.get());
         }
     }
 
     @Test public void testPrevious(){
-        assertEquals(Optional.empty(), list.previous());
-        list.add(1);
-        list.add(2);
-        list.add(3);
+        assertEquals(Optional.empty(), this.list.previous());
+        Optional<Integer> emptyOptional = this.list.previous();
+        assertFalse(emptyOptional.isPresent());
+
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
 
         for (int i : new int[]{2, 1, 3, 2}) {
-            Optional<Integer> optional = list.previous();
+            Optional<Integer> optional = this.list.previous();
             assertTrue(optional.isPresent());
             assertEquals(i, optional.get());
         }
     }
 
     @Test public void testReset(){
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.reset();
-        testIsInitiallyEmpty();
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
+
+        this.list.next();
+        this.list.next();
+        Optional<Integer> optional = this.list.next();
+        assertTrue(optional.isPresent());
+        assertEquals(3, optional.get());
+
+        this.list.reset();
+
+        Optional<Integer> nextOptional = this.list.next();
+        assertTrue(nextOptional.isPresent());
+        assertEquals(2, nextOptional.get());
     }
 
-    @Test public void testEvenStrategy(){
-        list.add(1);
-        list.add(2);
-        list.add(3);
-        list.add(4);
+    @Test public void testEvenStrategyPositiveCase(){
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(3);
+        this.list.add(4);
 
         StrategyFactory strategyFactory = new StrategyFactoryImplementation();
 
         for (int i : new int[]{2, 4, 2}) {
-            Optional<Integer> optional = list.next(strategyFactory.createEvenStrategy());
+            Optional<Integer> optional = this.list.next(strategyFactory.createEvenStrategy());
             assertTrue(optional.isPresent());
             assertEquals(i, optional.get());
         }
     }
 
-    @Test public void testMultipleOfStrategy(){
+    @Test public void testEvenStrategyNegativeCase() {
+        this.list.add(1);
+        this.list.add(3);
+        this.list.add(5);
+
+        StrategyFactory strategyFactory = new StrategyFactoryImplementation();
+
+        Optional<Integer> optional = this.list.next(strategyFactory.createEvenStrategy());
+        assertFalse(optional.isPresent());
+    }
+
+    @Test public void testMultipleOfStrategyPositiveCase(){
         final int number = 3;
 
-        list.add(1);
-        list.add(3);
-        list.add(6);
-        list.add(8);
-        list.add(9);
+        this.list.add(1);
+        this.list.add(3);
+        this.list.add(6);
+        this.list.add(8);
+        this.list.add(9);
 
         StrategyFactory strategyFactory = new StrategyFactoryImplementation();
 
         for (int i : new int[]{3, 6, 9, 3}) {
-            Optional<Integer> optional = list.next(strategyFactory.createMultipleOfStrategy(number));
+            Optional<Integer> optional = this.list.next(strategyFactory.createMultipleOfStrategy(number));
             assertTrue(optional.isPresent());
             assertEquals(i, optional.get());
         }
     }
 
-    @Test public void testEqualsStrategy(){
+    @Test public void testMultipleOfStrategyNegativeCase() {
         final int number = 3;
 
-        list.add(1);
-        list.add(3);
-        list.add(2);
-        list.add(3);
-        list.add(4);
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(4);
+
+        StrategyFactory strategyFactory = new StrategyFactoryImplementation();
+
+        Optional<Integer> optional = this.list.next(strategyFactory.createMultipleOfStrategy(number));
+        assertFalse(optional.isPresent());
+    }
+
+    @Test public void testEqualsStrategyPositiveCase(){
+        final int number = 3;
+
+        this.list.add(1);
+        this.list.add(3);
+        this.list.add(2);
+        this.list.add(3);
+        this.list.add(4);
 
         StrategyFactory strategyFactory = new StrategyFactoryImplementation();
         SelectStrategy strategy = strategyFactory.createEqualsStrategy(number);
 
         for (int i : new int[]{2, 4}) {
-            Optional<Integer> strategyOptional = list.next(strategy);
+            Optional<Integer> strategyOptional = this.list.next(strategy);
             assertTrue(strategyOptional.isPresent());
             assertEquals(number, strategyOptional.get());
-            Optional<Integer>optional = list.next();
+            Optional<Integer>optional = this.list.next();
             assertTrue(optional.isPresent());
             assertEquals(i, optional.get());
         }
-        Optional<Integer> strategyOptional = list.next(strategy);
+        Optional<Integer> strategyOptional = this.list.next(strategy);
         assertTrue(strategyOptional.isPresent());
         assertEquals(3, strategyOptional.get());
+    }
+
+    @Test public void testEqualsStrategyNegativeCase() {
+        final int number = 3;
+
+        this.list.add(1);
+        this.list.add(2);
+        this.list.add(4);
+
+        StrategyFactory strategyFactory = new StrategyFactoryImplementation();
+        SelectStrategy strategy = strategyFactory.createEqualsStrategy(number);
+
+        Optional<Integer> strategyOptional = this.list.next(strategy);
+        assertFalse(strategyOptional.isPresent());
     }
 
 

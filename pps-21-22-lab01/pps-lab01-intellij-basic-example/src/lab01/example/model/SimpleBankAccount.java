@@ -14,14 +14,14 @@ public class SimpleBankAccount extends AbstractBankAccount {
     @Override
     public void deposit(int userID, double amount) {
         if (checkUser(userID)) {
-            this.balance += amount;
+            balance += amount;
         }
     }
 
     @Override
     public void withdraw(final int userID, final double amount) {
         if (checkUser(userID) && isWithdrawAllowed(amount)) {
-            this.balance -= amount;
+            balance -= amount;
         }
     }
 }

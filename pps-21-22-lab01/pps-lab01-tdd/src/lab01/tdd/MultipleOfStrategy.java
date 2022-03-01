@@ -1,6 +1,6 @@
 package lab01.tdd;
 
-public class MultipleOfStrategy implements SelectStrategy{
+public class MultipleOfStrategy implements SelectStrategy {
 
     private final int number;
 

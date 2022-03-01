@@ -17,7 +17,7 @@ public class SimpleBankAccountWithAtm extends AbstractBankAccount{
     @Override
     public void deposit(int userID, double amount) {
         if (checkUser(userID)) {
-            this.balance += (amount - FEE);
+            balance += (amount - FEE);
         }
     }
 
@@ -25,7 +25,7 @@ public class SimpleBankAccountWithAtm extends AbstractBankAccount{
     public void withdraw(int userID, double amount) {
         final double amountATM = amount + FEE;
         if (checkUser(userID) && isWithdrawAllowed(amountATM)) {
-            this.balance -= (amountATM);
+            balance -= (amountATM);
         }
     }
 }

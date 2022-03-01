@@ -1,10 +1,10 @@
 package lab01.tdd;
 
-public final class StrategyFactoryImplementation implements StrategyFactory{
+public final class StrategyFactoryImplementation implements StrategyFactory {
 
     @Override
     public SelectStrategy createEvenStrategy() {
-        return new EvenStrategy() ;
+        return new EvenStrategy();
     }
 
     @Override

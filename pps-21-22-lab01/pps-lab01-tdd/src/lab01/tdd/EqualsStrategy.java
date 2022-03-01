@@ -1,6 +1,6 @@
 package lab01.tdd;
 
-public class EqualsStrategy implements SelectStrategy{
+public class EqualsStrategy implements SelectStrategy {
 
     private final int number;
 

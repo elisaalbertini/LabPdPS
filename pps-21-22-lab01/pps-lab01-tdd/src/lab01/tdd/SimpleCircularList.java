@@ -17,7 +17,7 @@ public class SimpleCircularList implements CircularList {
     @Override
     public void add(int element) {
         this.elementList.add(element);
-        this.currentIndex = (this.currentIndex == -1) ? 0 : this.elementList.size() - 1;
+        this.currentIndex = this.elementList.size() - 1;
     }
 
     @Override
@@ -30,18 +30,18 @@ public class SimpleCircularList implements CircularList {
         return this.elementList.size() == 0;
     }
 
-    private void nextIndex(){
-        this.currentIndex = (this.currentIndex == this.elementList.size()-1) ? 0 : this.currentIndex +1;
+    private void nextIndex() {
+        this.currentIndex = (this.currentIndex == this.elementList.size() - 1) ? 0 : this.currentIndex + 1;
     }
 
-    private void previousIndex(){
-        this.currentIndex = (this.currentIndex == 0) ? this.elementList.size()-1 : this.currentIndex -1;
+    private void previousIndex() {
+        this.currentIndex = (this.currentIndex == 0) ? this.elementList.size() - 1 : this.currentIndex - 1;
     }
 
-    private Optional<Integer> getElement(int index){
-        if(this.elementList.isEmpty()){
+    private Optional<Integer> getElement(int index) {
+        if (this.elementList.isEmpty()) {
             return Optional.empty();
-        }else {
+        } else {
             return Optional.ofNullable(this.elementList.get(index));
         }
     }
@@ -60,23 +60,22 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public void reset() {
-        this.elementList.clear();
-        this.currentIndex = -1;
+        this.currentIndex = 0;
     }
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
 
+        final int oldIndex = this.currentIndex;
         this.nextIndex();
 
-        for(int i = 0; i < elementList.size(); i++){
-            if(strategy.apply(elementList.get(this.currentIndex))){
+        while (oldIndex != this.currentIndex){
+            if (strategy.apply(elementList.get(this.currentIndex))) {
                 return Optional.of(elementList.get(this.currentIndex));
-            }else{
+            } else {
                 this.nextIndex();
             }
         }
-
         return Optional.empty();
     }
 }
