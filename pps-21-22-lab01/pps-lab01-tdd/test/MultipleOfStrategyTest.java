@@ -1,5 +1,4 @@
 import lab01.tdd.SelectStrategy;
-import lab01.tdd.SimpleCircularList;
 import lab01.tdd.StrategyFactory;
 import lab01.tdd.StrategyFactoryImplementation;
 import org.junit.jupiter.api.BeforeEach;
@@ -23,7 +22,7 @@ public class MultipleOfStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testMultipleOfStrategyWithOneElementMatchingStrategy() {
+    public void testMultipleOfStrategyWithOneElementMatchingTheStrategy() {
         this.addToList(List.of(4, 5, 6));
 
         Optional<Integer> optional = this.list.next(this.strategy);
@@ -31,7 +30,7 @@ public class MultipleOfStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testMultipleOfStrategyWithMoreElementsMatchingStrategy() {
+    public void testMultipleOfStrategyWithMoreElementsMatchingTheStrategy() {
        this.addToList(List.of(6, 7, 8, 9));
 
         this.list.next(this.strategy);
@@ -40,7 +39,7 @@ public class MultipleOfStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testMultipleOfStrategyAndListCircularityWithMoreElementsMatchingStrategy() {
+    public void testMultipleOfStrategyAndListCircularityWithMoreElementsMatchingTheStrategy() {
         this.addToList(List.of(6, 7, 8, 9));
 
         this.list.next(this.strategy);
@@ -50,7 +49,7 @@ public class MultipleOfStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void WithNoElementMatchingStrategy() {
+    public void WithNoElementMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 4));
 
         Optional<Integer> optional = this.list.next(this.strategy);

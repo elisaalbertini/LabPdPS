@@ -21,7 +21,7 @@ public class EvenStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testEvenStrategyWithOneElementMatchingStrategy() {
+    public void testEvenStrategyWithOneElementMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 3));
 
         Optional<Integer> optional = this.list.next(this.strategy);
@@ -29,7 +29,7 @@ public class EvenStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testEvenStrategyWithMoreElementsMatchingStrategy() {
+    public void testEvenStrategyWithMoreElementsMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 3, 4));
 
         this.list.next(this.strategy);
@@ -38,7 +38,7 @@ public class EvenStrategyTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testEvenStrategyAndListCircularityWithMoreElementsMatchingStrategy() {
+    public void testEvenStrategyAndListCircularityWithMoreElementsMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 3, 4));
 
         this.list.next(this.strategy);
@@ -49,7 +49,7 @@ public class EvenStrategyTest extends AbstractCircularListTest{
 
 
     @Test
-    public void testEvenStrategyWithNoElementMatchingStrategy() {
+    public void testEvenStrategyWithNoElementMatchingTheStrategy() {
         this.addToList(List.of(1, 3, 5));
 
         Optional<Integer> optional = this.list.next(this.strategy);

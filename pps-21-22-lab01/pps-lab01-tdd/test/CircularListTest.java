@@ -34,10 +34,19 @@ public class CircularListTest extends AbstractCircularListTest{
     public void testNext(){
         this.addToList(List.of(1, 2, 3));
 
-        for (int element : List.of(1, 2, 3, 1)) {
-            Optional<Integer> optional = this.list.next();
-            assertTrue(optional.isPresent() && optional.get().equals(element));
-        }
+        Optional<Integer> optional = this.list.next();
+        assertTrue(optional.isPresent() && optional.get().equals(1));
+    }
+
+    @Test
+    public void testMultipleNext(){
+        this.addToList(List.of(1, 2, 3));
+
+        this.list.next();
+        this.list.next();
+        this.list.next();
+        Optional<Integer> optional = this.list.next();
+        assertTrue(optional.isPresent() && optional.get().equals(1));
     }
 
     @Test
@@ -51,10 +60,18 @@ public class CircularListTest extends AbstractCircularListTest{
     public void testPrevious(){
         this.addToList(List.of(1, 2, 3));
 
-        for (int element : List.of(2, 1, 3, 2)) {
-            Optional<Integer> optional = this.list.previous();
-            assertTrue(optional.isPresent() && optional.get().equals(element));
-        }
+        Optional<Integer> optional = this.list.previous();
+        assertTrue(optional.isPresent() && optional.get().equals(2));
+    }
+
+    @Test
+    public void testMultiplePrevious(){
+        this.addToList(List.of(1, 2, 3));
+
+        this.list.previous();
+        this.list.previous();
+        Optional<Integer> optional = this.list.previous();
+        assertTrue(optional.isPresent() && optional.get().equals(3));
     }
 
     @Test

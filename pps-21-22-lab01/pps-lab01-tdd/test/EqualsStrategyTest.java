@@ -21,7 +21,7 @@ public class EqualsStrategyTest extends AbstractCircularListTest {
     }
 
     @Test
-    public void testEqualsStrategyWithOneElementMatchingStrategy() {
+    public void testEqualsStrategyWithOneElementMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 3));
 
         Optional<Integer> optional = this.list.next(strategy);
@@ -29,7 +29,7 @@ public class EqualsStrategyTest extends AbstractCircularListTest {
     }
 
     @Test
-    public void testEqualsStrategyWithMoreElementsMatchingStrategy() {
+    public void testEqualsStrategyWithMoreElementsMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 3, 3, 4));
 
         this.list.next(strategy);
@@ -39,7 +39,7 @@ public class EqualsStrategyTest extends AbstractCircularListTest {
     }
 
     @Test
-    public void testEqualsStrategyAndListCircularityWithMoreElementsMatchingStrategy() {
+    public void testEqualsStrategyAndListCircularityWithMoreElementsMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 3, 4, 3));
 
         this.list.next(strategy);
@@ -50,7 +50,7 @@ public class EqualsStrategyTest extends AbstractCircularListTest {
     }
 
     @Test
-    public void testEqualsStrategyWithNoElementMatchingStrategy() {
+    public void testEqualsStrategyWithNoElementMatchingTheStrategy() {
         this.addToList(List.of(1, 2, 4));
 
         Optional<Integer> optional = this.list.next(strategy);
