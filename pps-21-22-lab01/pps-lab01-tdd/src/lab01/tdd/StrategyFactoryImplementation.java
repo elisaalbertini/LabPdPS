@@ -4,16 +4,16 @@ public final class StrategyFactoryImplementation implements StrategyFactory {
 
     @Override
     public SelectStrategy createEvenStrategy() {
-        return new EvenStrategy();
+        return element -> element % 2 == 0;
     }
 
     @Override
     public SelectStrategy createMultipleOfStrategy(int number) {
-        return new MultipleOfStrategy(number);
+        return element -> element % number == 0;
     }
 
     @Override
     public SelectStrategy createEqualsStrategy(int number) {
-        return new EqualsStrategy(number);
+        return element -> element == number;
     }
 }

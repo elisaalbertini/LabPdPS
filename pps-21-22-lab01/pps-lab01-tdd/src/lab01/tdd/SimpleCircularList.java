@@ -60,22 +60,23 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public void reset() {
-        this.currentIndex = 0;
+        if(this.elementList.size() > 0){
+            this.currentIndex = 0;
+        }
     }
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
 
-        final int oldIndex = this.currentIndex;
         this.nextIndex();
-
-        while (oldIndex != this.currentIndex){
+        for(int count = 0; count < this.elementList.size(); count++){
             if (strategy.apply(elementList.get(this.currentIndex))) {
                 return Optional.of(elementList.get(this.currentIndex));
             } else {
                 this.nextIndex();
             }
         }
+
         return Optional.empty();
     }
 }

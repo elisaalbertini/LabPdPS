@@ -16,8 +16,9 @@ public class SimpleBankAccountWithAtm extends AbstractBankAccount{
 
     @Override
     public void deposit(int userID, double amount) {
+        final double amountATM = amount - FEE;
         if (checkUser(userID)) {
-            balance += (amount - FEE);
+            balance += (amountATM);
         }
     }
 
