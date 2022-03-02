@@ -3,7 +3,7 @@ package lab01.example.model;
 /**
  * This abstract class implements all the main common functions of an implementation of bank account
  */
-public abstract class AbstractBankAccount implements BankAccount{
+public abstract class AbstractBankAccount implements BankAccount {
 
     protected double balance;
     protected final AccountHolder holder;
@@ -27,7 +27,7 @@ public abstract class AbstractBankAccount implements BankAccount{
         return this.holder.getId() == id;
     }
 
-    protected boolean isWithdrawAllowed(final double amount){
+    protected boolean isWithdrawAllowed(final double amount) {
         return this.balance >= amount;
     }
 }

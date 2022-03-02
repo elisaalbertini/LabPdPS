@@ -1,6 +1,7 @@
 import lab01.example.model.SimpleBankAccount;
 
 import org.junit.jupiter.api.*;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -31,7 +32,7 @@ class SimpleBankAccountTest extends AbstractBankAccountTest {
     void testWithdraw() {
         bankAccount.deposit(accountHolder.getId(), 100);
         bankAccount.withdraw(accountHolder.getId(), 70);
-        assertEquals(100-70, bankAccount.getBalance());
+        assertEquals(100 - 70, bankAccount.getBalance());
     }
 
     @Test

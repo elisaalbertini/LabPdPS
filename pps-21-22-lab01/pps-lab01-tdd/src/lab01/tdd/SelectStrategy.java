@@ -7,6 +7,7 @@ public interface SelectStrategy {
 
     /**
      * Determines if the element satisfies the strategy
+     *
      * @param element the element to be checked
      * @return true if the element satisfies the strategy, false otherwise
      */

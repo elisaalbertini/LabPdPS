@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class MultipleOfStrategyTest extends AbstractCircularListTest{
+public class MultipleOfStrategyTest extends AbstractCircularListTest {
     public static final int NUMBER = 3;
     private SelectStrategy strategy;
 
@@ -31,7 +31,7 @@ public class MultipleOfStrategyTest extends AbstractCircularListTest{
 
     @Test
     public void testMultipleOfStrategyWithMoreElementsMatchingTheStrategy() {
-       this.addToList(List.of(6, 7, 8, 9));
+        this.addToList(List.of(6, 7, 8, 9));
 
         this.list.next(this.strategy);
         Optional<Integer> optional = this.list.next(this.strategy);

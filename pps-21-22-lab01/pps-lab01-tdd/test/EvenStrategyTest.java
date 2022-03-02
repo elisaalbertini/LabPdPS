@@ -10,7 +10,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class EvenStrategyTest extends AbstractCircularListTest{
+public class EvenStrategyTest extends AbstractCircularListTest {
     private SelectStrategy strategy;
 
     @BeforeEach

@@ -1,8 +1,6 @@
 package lab01.tdd;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class SimpleCircularList implements CircularList {
 
@@ -60,8 +58,8 @@ public class SimpleCircularList implements CircularList {
 
     @Override
     public void reset() {
-        if(this.list.size() > 0){
-            this.currentElement = 0;
+        if (this.list.size() > 0) {
+            this.currentElement = this.list.size() - 1;
         }
     }
 
@@ -69,7 +67,7 @@ public class SimpleCircularList implements CircularList {
     public Optional<Integer> next(SelectStrategy strategy) {
 
         this.nextIndex();
-        for(int count = 0; count < this.list.size(); count++){
+        for (int count = 0; count < this.list.size(); count++) {
             if (strategy.apply(list.get(this.currentElement))) {
                 return Optional.of(list.get(this.currentElement));
             } else {

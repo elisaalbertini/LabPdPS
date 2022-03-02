@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * The test suite for testing the CircularList implementation
  */
-public class CircularListTest extends AbstractCircularListTest{
+public class CircularListTest extends AbstractCircularListTest {
 
     @Test
     public void testFirstAdd() {
@@ -31,7 +31,7 @@ public class CircularListTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testNext(){
+    public void testNext() {
         this.addToList(List.of(1, 2, 3));
 
         Optional<Integer> optional = this.list.next();
@@ -39,7 +39,7 @@ public class CircularListTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testMultipleNext(){
+    public void testMultipleNext() {
         this.addToList(List.of(1, 2, 3));
 
         this.list.next();
@@ -57,7 +57,7 @@ public class CircularListTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testPrevious(){
+    public void testPrevious() {
         this.addToList(List.of(1, 2, 3));
 
         Optional<Integer> optional = this.list.previous();
@@ -65,7 +65,7 @@ public class CircularListTest extends AbstractCircularListTest{
     }
 
     @Test
-    public void testMultiplePrevious(){
+    public void testMultiplePrevious() {
         this.addToList(List.of(1, 2, 3));
 
         this.list.previous();
@@ -91,7 +91,7 @@ public class CircularListTest extends AbstractCircularListTest{
         this.list.reset();
 
         Optional<Integer> optional = this.list.next();
-        assertTrue(optional.isPresent() && optional.get().equals(2));
+        assertTrue(optional.isPresent() && optional.get().equals(1));
     }
 
     @Test
@@ -103,6 +103,6 @@ public class CircularListTest extends AbstractCircularListTest{
         this.list.reset();
 
         Optional<Integer> optional = this.list.previous();
-        assertTrue(optional.isPresent() && optional.get().equals(3));
+        assertTrue(optional.isPresent() && optional.get().equals(2));
     }
 }
