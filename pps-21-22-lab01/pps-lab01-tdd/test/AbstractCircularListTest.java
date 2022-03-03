@@ -1,4 +1,4 @@
-import lab01.tdd.SimpleCircularList;
+import lab01.tdd.CircularListImplementation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -11,11 +11,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  * The test suite for testing the AbstractCircularListTest implementation
  */
 abstract class AbstractCircularListTest {
-    protected SimpleCircularList list;
+    protected CircularListImplementation list;
 
     @BeforeEach
     public void beforeEach() {
-        this.list = new SimpleCircularList();
+        this.list = new CircularListImplementation();
     }
 
     protected void addToList(List<Integer> elementList) {

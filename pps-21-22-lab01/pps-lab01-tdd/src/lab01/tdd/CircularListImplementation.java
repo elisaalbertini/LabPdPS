@@ -2,12 +2,12 @@ package lab01.tdd;
 
 import java.util.*;
 
-public class SimpleCircularList implements CircularList {
+public class CircularListImplementation implements CircularList {
 
     private final List<Integer> list;
     private ListIterator<Integer> iterator;
 
-    public SimpleCircularList() {
+    public CircularListImplementation() {
         this.list = new ArrayList<>();
         this.iterator = this.list.listIterator();
     }
