@@ -7,8 +7,12 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
+
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * The test suite for testing the EqualsStrategy
+ */
 public class EqualsStrategyTest extends AbstractCircularListTest {
     public static final int NUMBER = 3;
     private SelectStrategy strategy;

@@ -61,7 +61,7 @@ public class CircularListTest extends AbstractCircularListTest {
         this.addToList(List.of(1, 2, 3));
 
         Optional<Integer> optional = this.list.previous();
-        assertTrue(optional.isPresent() && optional.get().equals(2));
+        assertTrue(optional.isPresent() && optional.get().equals(3));
     }
 
     @Test
@@ -71,7 +71,7 @@ public class CircularListTest extends AbstractCircularListTest {
         this.list.previous();
         this.list.previous();
         Optional<Integer> optional = this.list.previous();
-        assertTrue(optional.isPresent() && optional.get().equals(3));
+        assertTrue(optional.isPresent() && optional.get().equals(1));
     }
 
     @Test
@@ -103,6 +103,6 @@ public class CircularListTest extends AbstractCircularListTest {
         this.list.reset();
 
         Optional<Integer> optional = this.list.previous();
-        assertTrue(optional.isPresent() && optional.get().equals(2));
+        assertTrue(optional.isPresent() && optional.get().equals(3));
     }
 }

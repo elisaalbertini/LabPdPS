@@ -1,7 +1,7 @@
 package lab01.tdd;
 
 /**
- * Rapresent an abstract factory of different strategy
+ * Represent an abstract factory of different strategy
  */
 public interface StrategyFactory {
 

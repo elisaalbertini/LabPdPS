@@ -10,6 +10,9 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * The test suite for testing the MultipleOfStrategy
+ */
 public class MultipleOfStrategyTest extends AbstractCircularListTest {
     public static final int NUMBER = 3;
     private SelectStrategy strategy;

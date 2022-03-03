@@ -5,17 +5,17 @@ import java.util.*;
 public class SimpleCircularList implements CircularList {
 
     private final List<Integer> list;
-    private int currentElement;
+    private ListIterator<Integer> iterator;
 
     public SimpleCircularList() {
         this.list = new ArrayList<>();
-        this.currentElement = -1;
+        this.iterator = this.list.listIterator();
     }
 
     @Override
     public void add(int element) {
         this.list.add(element);
-        this.currentElement = this.list.size() - 1;
+        this.iterator = this.list.listIterator();
     }
 
     @Override
@@ -28,53 +28,56 @@ public class SimpleCircularList implements CircularList {
         return this.list.size() == 0;
     }
 
-    private void nextIndex() {
-        this.currentElement = (this.currentElement == this.list.size() - 1) ? 0 : this.currentElement + 1;
-    }
-
-    private void previousIndex() {
-        this.currentElement = (this.currentElement == 0) ? this.list.size() - 1 : this.currentElement - 1;
-    }
-
-    private Optional<Integer> getElement(int index) {
+    private Optional<Integer> move(boolean isNext) {
+        final Optional<Integer> optional;
         if (this.list.isEmpty()) {
             return Optional.empty();
         } else {
-            return Optional.ofNullable(this.list.get(index));
+            if (isNext) {
+                if (!this.iterator.hasNext()) {
+                    this.iterator = this.list.listIterator();
+                }
+                optional = Optional.of(this.iterator.next());
+            } else {
+                if (!this.iterator.hasPrevious()) {
+                    this.iterator = this.list.listIterator(this.list.size());
+                }
+                optional = Optional.of(this.iterator.previous());
+            }
         }
+        return optional;
     }
 
     @Override
     public Optional<Integer> next() {
-        this.nextIndex();
-        return this.getElement(this.currentElement);
+        return this.move(true);
     }
 
     @Override
     public Optional<Integer> previous() {
-        this.previousIndex();
-        return this.getElement(this.currentElement);
+        return this.move(false);
     }
 
     @Override
     public void reset() {
         if (this.list.size() > 0) {
-            this.currentElement = this.list.size() - 1;
+            this.iterator = this.list.listIterator();
         }
     }
 
     @Override
     public Optional<Integer> next(SelectStrategy strategy) {
-
-        this.nextIndex();
         for (int count = 0; count < this.list.size(); count++) {
-            if (strategy.apply(list.get(this.currentElement))) {
-                return Optional.of(list.get(this.currentElement));
+            Optional<Integer> optional = this.next();
+            if (optional.isPresent()) {
+                int element = optional.get();
+                if (strategy.apply(element)) {
+                    return Optional.of(element);
+                }
             } else {
-                this.nextIndex();
+                return Optional.empty();
             }
         }
-
         return Optional.empty();
     }
 }
