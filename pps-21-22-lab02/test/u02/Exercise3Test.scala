@@ -31,6 +31,8 @@ class Exercise3Test:
     assertFalse(notLength("scala"))
 
   @Test def testNegGen(): Unit =
+
+    assertTrue(neg[Int](_ % 2 == 0)(5))
     assertFalse(neg[Int](_ % 2 == 0)(2))
 
 

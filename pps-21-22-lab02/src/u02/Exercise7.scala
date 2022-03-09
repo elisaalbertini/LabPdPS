@@ -5,7 +5,7 @@ object Exercise7:
   enum Shape:
     case Rectangle(base: Double, eight: Double)
     case Circle(radius: Double)
-    case Square(sides: Double)
+    case Square(side: Double)
 
   def perimeter(shape: Shape): Double = shape match
     case Shape.Rectangle(b, h) => (b * 2) + (h * 2)
