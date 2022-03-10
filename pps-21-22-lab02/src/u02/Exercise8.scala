@@ -21,7 +21,9 @@ object Exercise8 extends App :
       case _ => None()
 
     def filter[A](opt: Option[A])(f: A => Boolean): Option[A] = opt match
-      case Some(a) if f(a) => Some(a)
+      case Some(a) => f(a) match
+        case true => Some(a)
+        case _ => None()
       case _ => None()
 
     def map[A](opt: Option[A])(f: A => Boolean): Option[Boolean] = opt match
