@@ -6,9 +6,9 @@ import Exercise7.*
 
 class Exercise7Test:
 
-  private val rect = Shape.Rectangle(4, 3)
-  private val circle = Shape.Circle(8)
-  private val square = Shape.Square(5)
+  val rect = Shape.Rectangle(4, 3)
+  val circle = Shape.Circle(8)
+  val square = Shape.Square(5)
 
   @Test def testRectanglePerimeter(): Unit =
     assertEquals(14, perimeter(rect), 0)
@@ -17,10 +17,10 @@ class Exercise7Test:
     assertEquals(12, area(rect), 0)
 
   @Test def testCirclePerimeter(): Unit =
-    assertEquals(50.27, perimeter(circle), 0.05)
+    assertEquals(16*scala.math.Pi, perimeter(circle), 0.05)
 
   @Test def testCircleArea(): Unit =
-    assertEquals(201.06, area(circle), 0.05)
+    assertEquals(scala.math.Pi* 64, area(circle), 0.05)
 
   @Test def testSquarePerimeter(): Unit =
     assertEquals(20, perimeter(square), 0)

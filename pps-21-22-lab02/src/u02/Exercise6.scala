@@ -1,17 +1,16 @@
 package u02
 
 object Exercise6 extends App :
-  // va bene? non credo sia a coda
-  /*def fib(n: Int): Int = n match
+
+  def fib(n: Int): Int = n match
     case 0 => 0
     case 1 => 1
-    case _ => fib(n - 1) + fib(n - 2)*/
+    case _ => fib(n - 1) + fib(n - 2)
 
-  //questa è tail
-  def fib(n: Int): Int =
+  def fibTail(n: Int): Int =
     @annotation.tailrec
-    def tail(counter: Int, fib2: Int, fib1: Int): Int = counter match
-      case n if n <= 0 => fib1
-      case _ => tail(counter - 1, fib2 + fib1, fib2)
+    def tail(counter: Int, fib1: Int, fib2: Int): Int = counter match
+      case n if n <= 0 => fib2
+      case _ => tail(counter - 1, fib1 + fib2, fib1)
     tail(n, 1, 0)
 
