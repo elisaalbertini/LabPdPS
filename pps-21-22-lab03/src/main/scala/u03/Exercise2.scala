@@ -44,12 +44,16 @@ object Exercise2 extends App :
       case Cons(h, t) if n > 0 => drop(t())(n - 1)
       case _ => stream
 
+    def constant[A](e: A): Stream[A] = Stream.cons(e, constant[A](e))
+
+    val fibs: Stream[Int] =
+      def _fibs(fib1: Int, fib2: Int): Stream[Int] =
+        Stream.cons(fib1 + fib2, _fibs(fib2, fib1 + fib2))
+
+      Stream.cons(0, Stream.cons(1, _fibs(0, 1)))
+      
   end Stream
 
-  def constant[A](e: A): Stream[A] = Stream.cons(e, constant[A](e))
+  
 
-  val fibs: Stream[Int] =
-    def _fibs(fib1: Int, fib2: Int): Stream[Int] =
-      Stream.cons(fib1 + fib2, _fibs(fib2, fib1 + fib2))
-
-    Stream.cons(0, Stream.cons(1, _fibs(0, 1)))
+  
