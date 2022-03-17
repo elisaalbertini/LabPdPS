@@ -47,7 +47,7 @@ object Exercise1 extends App :
     def filter2[A](l1: List[A])(pred: A => Boolean): List[A] = flatMap[A, A](l1)(e => e match
       case e if pred(e) => Cons(e, Nil())
       case _ => Nil())
-    
+
     @tailrec
     def max(l: List[Int]): Option[Int] = l match
       case Cons(h, t) => t match
