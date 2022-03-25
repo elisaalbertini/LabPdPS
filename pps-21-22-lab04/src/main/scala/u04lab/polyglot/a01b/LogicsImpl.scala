@@ -26,7 +26,7 @@ class LogicsImpl(private val size: Int, private val mines: Int) extends Logics :
       case true => genMines(l, genNewMin(Random()), n)
       case false => n match
         case 0 => l
-        case _ => genMines(Cons(next, l), genNewMin(Random()), n-1)
+        case _ => genMines(Cons(next, l), genNewMin(Random()), n - 1)
 
   minesSet = genMines(minesSet, genNewMin(Random()), mines)
   println(minesSet)
