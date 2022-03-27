@@ -12,13 +12,13 @@ trait Complex:
   def *(c: Complex): Complex // should implement the product of two complex numbers
 
 object Complex:
-  def apply(re: Double, im: Double): Complex = ComplexImpl1(re, im) // Fill here
+  def apply(re: Double, im: Double): Complex = ComplexImpl(re, im)
 
-case class ComplexImpl1(override val re: Double,
-                        override val im: Double) extends Complex :
-  override def +(c: Complex): Complex = ComplexImpl1(c.re + re, c.im + im)
+  private case class ComplexImpl(override val re: Double,
+                                 override val im: Double) extends Complex :
+    override def +(c: Complex): Complex = ComplexImpl(c.re + re, c.im + im)
 
-  override def *(c: Complex): Complex = ComplexImpl1(re * c.re - (im * c.im), re * c.im + im * c.re)
+    override def *(c: Complex): Complex = ComplexImpl(re * c.re - im * c.im, re * c.im + im * c.re)
 
 @main def checkComplex(): Unit =
   val a = Array(Complex(10, 20), Complex(1, 1), Complex(7, 0))
@@ -29,5 +29,5 @@ case class ComplexImpl1(override val re: Double,
   println((c2, c2.re, c2.im)) // (ComplexImpl(-10.0,30.0),-10.0,30.0)
   println(c.equals(c1)) //true
   println(c.equals(c)) //true
-  println(c.toString) //complexImpl1(18.0,21.0)
+  println(c.toString) //complexImpl(18.0,21.0)
 
