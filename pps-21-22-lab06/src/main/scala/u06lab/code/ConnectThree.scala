@@ -89,13 +89,13 @@ object ConnectThree extends App:
           board <- placeAnyDisk(game.head, player)
           if !game.exists(b => checkVictory(b)) //todo così cava tutti quelli vincenti --> vanno riaggiunti in qualche modo :/
         yield
-          board +: game //aggiungo la nuova board in testa
-      case _ => LazyList(Seq(Seq())) //tutte le board vuote --> è l'inizio del gioco
+          board +: game
+      case _ => LazyList(Seq(Seq()))
 
-  /*computeAnyGame(O, 5).foreach { g =>
+  computeAnyGame(O, 5).foreach { g =>
     printBoards(g)
     println()
-  }*/
+  }
 
   def printBoards(game: Seq[Board]): Unit =
     for
