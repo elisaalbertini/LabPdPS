@@ -56,7 +56,7 @@ object ConnectThree extends App :
     def _placeAnyDisk(player: Player, n: Int, game: Seq[Board]): Seq[Board] =
       n >= 0 match
         case true => newBoard(board, n, player) match
-          case newB if game.nonEmpty && game.head.equals(newB) => _placeAnyDisk(player, n - 1, game)
+          case newB if board.equals(newB) => _placeAnyDisk(player, n - 1, game)
           case newB => _placeAnyDisk(player, n - 1, newB +: game)
         case newB => game
 
@@ -111,7 +111,7 @@ object ConnectThree extends App :
         print(" ")
         if board == game.head then println()
 
-//  computeAnyGame(O, 4).foreach { g =>
-//    printBoards(g)
-//    println()
-//  }
+  computeAnyGame(O, 7).foreach { g =>
+    printBoards(g)
+    println()
+  }
