@@ -5,7 +5,7 @@ trait Functions:
 
   def concat(a: Seq[String]): String
 
-  def max(a: List[Int]): Int // gives Int.MinValue if a is empty
+  def max(a: List[Int]): Int
 
 object FunctionsImpl extends Functions :
 

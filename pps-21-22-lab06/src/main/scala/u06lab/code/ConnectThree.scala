@@ -111,7 +111,7 @@ object ConnectThree extends App :
         print(" ")
         if board == game.head then println()
 
-  computeAnyGame(O, 7).foreach { g =>
-    printBoards(g)
-    println()
-  }
+//  computeAnyGame(O, 7).foreach { g =>
+//    printBoards(g)
+//    println()
+//  }
