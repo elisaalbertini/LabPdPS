@@ -31,12 +31,12 @@ class NonEmptyParser(chars: Set[Char]) extends BasicParser(chars) with NonEmpty[
 
 trait NotTwoConsecutive[T] extends Parser[T] :
   private[this] var notConsecutive = true
-  private[this] var old: T = scala.compiletime.uninitialized
+  private[this] var old: Option[T] = Option.empty
 
   abstract override def parse(t: T): Boolean =
-    notConsecutive = old != t
-    old = t
-    notConsecutive
+    old.isEmpty match
+      case true => old = Option(t); true
+      case _ => notConsecutive = old.get != t; old = Option(t); notConsecutive
 
   abstract override def end: Boolean = notConsecutive && super.end
 
